@@ -1,0 +1,191 @@
+extends Control
+
+var expressions := {
+	"happy": preload ("res://assets/emotion_happy.png"),
+	"regular": preload ("res://assets/emotion_regular.png"),
+	"sad": preload ("res://assets/emotion_sad.png"),
+}
+
+var bodies := {
+	"sophia": preload ("res://assets/sophia.png"),
+	"pink": preload ("res://assets/pink.png")
+}
+
+## An array of dictionaries. Each dictionary has three properties:
+## - expression: a [code]Texture[/code] containing an expression
+## - text: a [code]String[/code] containing the text the character says
+## - character: a [code]Texture[/code] representing the character
+var dialogue_items: Array[Dictionary] = [
+	{
+		"expression": expressions["regular"],
+		"text": "I've been learning about [wave]Arrays and Dictionaries[/wave]",
+		"character": bodies["sophia"],
+		"choices": {
+			"Ok": 1,
+		},
+	},
+	{
+		"expression": expressions["regular"],
+		"text": "How has it been going?",
+		"character": bodies["pink"],
+		"choices": {
+			"good": 3,
+			"bad": 2,
+		},
+	},
+	{
+		"expression": expressions["sad"],
+		"text": "... Well... it is a little bit [shake]complicated[/shake]!",
+		"character": bodies["sophia"],
+		"choices": {
+			"ok": 4,
+		},
+	},
+	{
+		"expression": expressions["regular"],
+		"text": "... Well... it is going good!",
+		"character": bodies["sophia"],
+		"choices": {
+			"ok": 4,
+		},
+	},
+	{
+		"expression": expressions["regular"],
+		"text": "Oh!",
+		"character": bodies["pink"],
+		"choices": {
+			"I belive": 5,
+			"I don't belive": 8
+		},
+	},
+	{
+		"expression": expressions["regular"],
+		"text": "I believe in you!",
+		"character": bodies["pink"],
+		"choices": {
+			"next": 6,
+		},
+	},
+	{
+		"expression": expressions["happy"],
+		"text": "If you stick to it, you'll eventually make it!",
+		"character": bodies["pink"],
+		"choices": {
+			"ok": 7,
+		},
+	},
+	{
+		"expression": expressions["happy"],
+		"text": "That's it! Let's [tornado freq=30.0][rainbow val=1.0]GOOOOOO!!![/rainbow][/tornado]",
+		"character": bodies["sophia"],
+		"choices": {
+			"done": -1,
+		},
+	},
+	{
+		"expression": expressions["sad"],
+		"text": "I don't belive in you.",
+		"character": bodies["pink"],
+		"choices": {
+			"ok": 9,
+		},
+	},
+	{
+		"expression": expressions["sad"],
+		"text": "Your right, I will not keep trying",
+		"character": bodies["sophia"],
+		"choices": {
+			"done": -1,
+		},
+	}
+]
+var current_item_index := 0
+
+## UI element that shows the texts
+@onready var rich_text_label: RichTextLabel = %RichTextLabel
+## Audio player that plays voice sounds while text is being written
+@onready var audio_stream_player: AudioStreamPlayer = %AudioStreamPlayer
+## The character
+@onready var body: TextureRect = %Body
+## The Expression
+@onready var expression: TextureRect = %Expression
+@onready var buttoncontainer: VBoxContainer = $VBoxContainer/buttoncontainer
+
+
+func _ready() -> void:
+	show_text(0)
+
+
+## Draws the current text to the rich text element
+func show_text(current_item_index) -> void:
+	# We retrieve the current item from the array
+	var current_item := dialogue_items[current_item_index]
+	# from the item, we extract the properties.
+	# We set the text to the rich text control
+	# And we set the appropriate expression texture
+	rich_text_label.text = current_item["text"]
+	expression.texture = current_item["expression"]
+	body.texture = current_item["character"]
+	create_buttons(current_item["choices"])
+
+	# We set the initial visible ratio to the text to 0, so we can change it in the tween
+	rich_text_label.visible_ratio = 0.0
+	# We create a tween that will draw the text
+	var tween := create_tween()
+	# A variable that holds the amount of time for the text to show, in seconds
+	# We could write this directly in the tween call, but this is clearer.
+	# We will also use this for deciding on the sound length
+	var text_appearing_duration: float = current_item["text"].length() / 30.0
+	# We show the text slowly
+	tween.tween_property(rich_text_label, "visible_ratio", 1.0, text_appearing_duration)
+	# We randomize the audio playback's start time to make it sound different
+	# every time.
+	# We obtain the last possible offset in the sound that we can start from
+	var sound_max_offset := audio_stream_player.stream.get_length() - text_appearing_duration
+	# We pick a random position on that length
+	var sound_start_position := randf() * sound_max_offset
+	# We start playing the sound
+	audio_stream_player.play(sound_start_position)
+	# We make sure the sound stops when the text finishes displaying
+	tween.finished.connect(audio_stream_player.stop)
+
+	# We animate the character sliding in.
+	slide_in()
+
+	# Finally, we disable the next button until the text finishes displaying.
+	for button: Button in buttoncontainer.get_children():
+		button.disabled = true
+		var tween2 := create_tween()
+		tween2.tween_property(button, "modulate:a", 0, 0.2)
+	tween.finished.connect(func() -> void:
+		for button: Button in buttoncontainer.get_children():
+			button.disabled = false
+			var tween2 := create_tween()
+			tween2.tween_property(button, "modulate:a", 1, 0.2)
+	)
+
+
+## Progresses to the next slide.
+
+
+## Animates the character when they start talking
+func slide_in() -> void:
+	var slide_tween := create_tween()
+	slide_tween.set_ease(Tween.EASE_OUT)
+	body.position.x = get_viewport_rect().size.x / 7
+	slide_tween.tween_property(body, "position:x", 0, 0.3)
+	body.modulate.a = 0
+	slide_tween.parallel().tween_property(body, "modulate:a", 1, 0.2)
+
+func create_buttons(choices_data: Dictionary) -> void:
+	for button in buttoncontainer.get_children():
+		button.queue_free()
+	for choice_text in choices_data:
+		var button := Button.new()
+		buttoncontainer.add_child(button)
+		button.text = choice_text
+		var target_line_idx: int = choices_data[choice_text]
+		if target_line_idx == -1:
+			button.pressed.connect(get_tree().quit)
+		else:
+			button.pressed.connect(show_text.bind(target_line_idx))
