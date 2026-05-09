@@ -73,6 +73,7 @@ func advance() -> void:
 	current_item_index += 1
 	if current_item_index == dialogue_items.dialogue_items.size():
 		# if we reached the last slide, quit 
+		
 		get_tree().quit()
 	else:
 		# otherwise, show the text

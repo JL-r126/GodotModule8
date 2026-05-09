@@ -1,8 +1,9 @@
-res://assets/main_theme.tres
 res://lessons/slideshow.tscn
 res://addons/gdpractice/assets/theme.tres
 res://assets/practices/practices_theme.tres
-res://lessons/slideshow_entry.gd
-res://lessons/test_slideshow_entry.tres
+res://assets/main_theme.tres
 res://lessons/slideshow.gd
-res://lessons/slideshow_conversation.gd
+res://lessons/dialogue.tscn
+res://dialogue_item.gd
+res://lessons/dialogue_chioce.gd
+res://lessons/dialogue_choice.gd

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bqls3o5daeu2s"]
+[gd_scene format=3 uid="uid://bqls3o5daeu2s"]
 
 [ext_resource type="Theme" uid="uid://cshg3sgf0xxq" path="res://assets/main_theme.tres" id="1_628t2"]
 [ext_resource type="Script" uid="uid://cheh7b73m0fds" path="res://lessons/slideshow.gd" id="2_wbt3f"]
@@ -38,7 +38,7 @@ action = &"advance_text"
 [sub_resource type="Shortcut" id="Shortcut_7vboy"]
 events = [SubResource("InputEventAction_3rk3v")]
 
-[node name="Slideshow" type="Control"]
+[node name="Slideshow" type="Control" unique_id=717901962]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,7 +49,7 @@ theme = ExtResource("1_628t2")
 script = ExtResource("2_wbt3f")
 dialogue_items = SubResource("Resource_ssdh4")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=1767397186]
 material = SubResource("ShaderMaterial_efgpg")
 layout_mode = 1
 anchors_preset = 15
@@ -58,7 +58,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Body" type="TextureRect" parent="."]
+[node name="Body" type="TextureRect" parent="." unique_id=1638903517]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -71,7 +71,7 @@ texture = ExtResource("5_omd3l")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Expression" type="TextureRect" parent="Body"]
+[node name="Expression" type="TextureRect" parent="Body" unique_id=1903021475]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 15
@@ -83,7 +83,7 @@ texture = ExtResource("6_vfoky")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="RichTextLabel" parent="." unique_id=794066701]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
@@ -99,7 +99,7 @@ bbcode_enabled = true
 text = "Hello World"
 fit_content = true
 
-[node name="NextButton" type="Button" parent="."]
+[node name="NextButton" type="Button" parent="." unique_id=287480480]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 3
@@ -116,6 +116,6 @@ grow_vertical = 0
 shortcut = SubResource("Shortcut_7vboy")
 text = "next"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1916168540]
 unique_name_in_owner = true
 stream = ExtResource("7_nppuw")

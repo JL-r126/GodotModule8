@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://cshg3sgf0xxq"]
+[gd_resource type="Theme" format=3 uid="uid://cshg3sgf0xxq"]
 
 [ext_resource type="FontFile" uid="uid://jjjfqhwo0edx" path="res://assets/Fonts/editundo.ttf" id="1_xgdp2"]
 [ext_resource type="FontFile" uid="uid://dyrsmldl66u55" path="res://assets/practices/Stacked pixel.ttf" id="2_611f8"]
