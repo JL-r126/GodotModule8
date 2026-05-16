@@ -1,6 +1,6 @@
 63f7b34db8d8cdea90c76aacccf841ec
-::res://::1778342066
-dialogue_item.gd::GDScript::7660924546763911374::1778341725::0::1::::DialogueItem<>SlideShowEntry<><>0<>0<><>::
+::res://::1778952753
+dialogue_item.gd::GDScript::7660924546763911374::1778342494::0::1::::DialogueItem<>SlideShowEntry<><>0<>0<><>::
 icon_start_a_dialog.png::CompressedTexture2D::6303229813746255456::1778339886::1778340255::1::::<><><>0<>0<>6d676fc3aef42e64632942641da5c823<>res://.godot/imported/icon_start_a_dialog.png-2a805b4f58191bd59b989ffb2edce0cc.ctex::
 ::res://addons/::1778339886
 ::res://addons/gdpractice/::1778339886
@@ -157,10 +157,10 @@ Stacked pixel.ttf::FontFile::8880003638541475186::1778339886::1778340254::1::::<
 sword.svg::CompressedTexture2D::5648865757471466502::1778339886::1778340254::1::::<><><>0<>0<>520cf322119d78c02a9d69ec8ed66070<>res://.godot/imported/sword.svg-68d7a07bce8c918890a1be4684106ac7.ctex::
 times.svg::CompressedTexture2D::6053873079454667765::1778339886::1778340254::1::::<><><>0<>0<>2a51c0b735359d9a945f6880ee96484b<>res://.godot/imported/times.svg-78edd8b3b6fdfb5b8d06bdd11dc076b9.ctex::
 torch.svg::CompressedTexture2D::1127836395780157066::1778339886::1778340254::1::::<><><>0<>0<>142c6b7569daa5f9b80dcd9eb1119da9<>res://.godot/imported/torch.svg-8eb96b0e7222be78a4f00a3359765f82.ctex::
-::res://lessons/::1778342066
+::res://lessons/::1778342500
 dialogue.gd::GDScript::7016479085190952283::1778339886::0::1::::<>Control<><>0<>0<><>::
-dialogue.tscn::PackedScene::5296199793344880298::1778342119::0::1::::<><><>0<>0<><>::uid://cshg3sgf0xxq::::res://assets/main_theme.tres<>uid://c673ndsi3esbr::::res://lessons/dialogue.gd<>uid://dm7717xxg836f::::res://assets/sliding_background.gdshader<>uid://bnly1gkbxw6b5::::res://assets/bubble_pattern.png<>uid://copkt78vgp37i::::res://assets/sophia.png<>uid://d000xjtr4iqtk::::res://assets/emotion_regular.png<>uid://chgko4hmxwxu5::::res://assets/talking_synth.ogg
-dialogue_chioce.gd::GDScript::6068322761522335740::1778342088::0::1::::DialogueChioce<>Resource<><>0<>0<><>::
+dialogue.tscn::PackedScene::5296199793344880298::1778342500::0::1::::<><><>0<>0<><>::uid://cshg3sgf0xxq::::res://assets/main_theme.tres<>uid://c673ndsi3esbr::::res://lessons/dialogue.gd<>uid://dm7717xxg836f::::res://assets/sliding_background.gdshader<>uid://bnly1gkbxw6b5::::res://assets/bubble_pattern.png<>uid://copkt78vgp37i::::res://assets/sophia.png<>uid://d000xjtr4iqtk::::res://assets/emotion_regular.png<>uid://chgko4hmxwxu5::::res://assets/talking_synth.ogg
+dialogue_choice.gd::GDScript::6068322761522335740::1778342302::0::1::::DialogueChoice<>Resource<><>0<>0<><>::
 slideshow.gd::GDScript::5272903051469297684::1778341020::0::1::::<>Control<><>0<>0<><>::
 slideshow.tscn::PackedScene::3533294027102932216::1778341020::0::1::::<><><>0<>0<><>::uid://cshg3sgf0xxq::::res://assets/main_theme.tres<>uid://cheh7b73m0fds::::res://lessons/slideshow.gd<>uid://ci0bnowe7sdmx::::res://lessons/slideshow_entry.gd<>uid://dm7717xxg836f::::res://assets/sliding_background.gdshader<>uid://bnly1gkbxw6b5::::res://assets/bubble_pattern.png<>uid://copkt78vgp37i::::res://assets/sophia.png<>uid://d000xjtr4iqtk::::res://assets/emotion_regular.png<>uid://chgko4hmxwxu5::::res://assets/talking_synth.ogg<>uid://b0kdo33e2gvtj::::res://lessons/slideshow_conversation.gd
 slideshow_conversation.gd::GDScript::4161994218403887555::1778339886::0::1::::SlideShowConversation<>Resource<><>0<>0<><>::
