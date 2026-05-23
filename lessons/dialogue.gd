@@ -15,90 +15,7 @@ var bodies := {
 ## - expression: a [code]Texture[/code] containing an expression
 ## - text: a [code]String[/code] containing the text the character says
 ## - character: a [code]Texture[/code] representing the character
-var dialogue_items: Array[Dictionary] = [
-	{
-		"expression": expressions["regular"],
-		"text": "I've been learning about [wave]Arrays and Dictionaries[/wave]",
-		"character": bodies["sophia"],
-		"choices": {
-			"Ok": 1,
-		},
-	},
-	{
-		"expression": expressions["regular"],
-		"text": "How has it been going?",
-		"character": bodies["pink"],
-		"choices": {
-			"good": 3,
-			"bad": 2,
-		},
-	},
-	{
-		"expression": expressions["sad"],
-		"text": "... Well... it is a little bit [shake]complicated[/shake]!",
-		"character": bodies["sophia"],
-		"choices": {
-			"ok": 4,
-		},
-	},
-	{
-		"expression": expressions["regular"],
-		"text": "... Well... it is going good!",
-		"character": bodies["sophia"],
-		"choices": {
-			"ok": 4,
-		},
-	},
-	{
-		"expression": expressions["regular"],
-		"text": "Oh!",
-		"character": bodies["pink"],
-		"choices": {
-			"I belive": 5,
-			"I don't belive": 8
-		},
-	},
-	{
-		"expression": expressions["regular"],
-		"text": "I believe in you!",
-		"character": bodies["pink"],
-		"choices": {
-			"next": 6,
-		},
-	},
-	{
-		"expression": expressions["happy"],
-		"text": "If you stick to it, you'll eventually make it!",
-		"character": bodies["pink"],
-		"choices": {
-			"ok": 7,
-		},
-	},
-	{
-		"expression": expressions["happy"],
-		"text": "That's it! Let's [tornado freq=30.0][rainbow val=1.0]GOOOOOO!!![/rainbow][/tornado]",
-		"character": bodies["sophia"],
-		"choices": {
-			"done": -1,
-		},
-	},
-	{
-		"expression": expressions["sad"],
-		"text": "I don't belive in you.",
-		"character": bodies["pink"],
-		"choices": {
-			"ok": 9,
-		},
-	},
-	{
-		"expression": expressions["sad"],
-		"text": "Your right, I will not keep trying",
-		"character": bodies["sophia"],
-		"choices": {
-			"done": -1,
-		},
-	}
-]
+@export var dialogue_items: Array[DialogueItem] = []
 var current_item_index := 0
 
 ## UI element that shows the texts
@@ -123,10 +40,10 @@ func show_text(current_item_index) -> void:
 	# from the item, we extract the properties.
 	# We set the text to the rich text control
 	# And we set the appropriate expression texture
-	rich_text_label.text = current_item["text"]
-	expression.texture = current_item["expression"]
-	body.texture = current_item["character"]
-	create_buttons(current_item["choices"])
+	rich_text_label.text = current_item.text
+	expression.texture = current_item.expression
+	body.texture = current_item.character
+	create_buttons(current_item.choices)
 
 	# We set the initial visible ratio to the text to 0, so we can change it in the tween
 	rich_text_label.visible_ratio = 0.0
@@ -177,15 +94,15 @@ func slide_in() -> void:
 	body.modulate.a = 0
 	slide_tween.parallel().tween_property(body, "modulate:a", 1, 0.2)
 
-func create_buttons(choices_data: Dictionary) -> void:
+func create_buttons(choices_data: Array[DialogueChoice]) -> void:
 	for button in buttoncontainer.get_children():
 		button.queue_free()
-	for choice_text in choices_data:
+	for choice in choices_data:
 		var button := Button.new()
 		buttoncontainer.add_child(button)
-		button.text = choice_text
-		var target_line_idx: int = choices_data[choice_text]
-		if target_line_idx == -1:
+		button.text = choice.text
+		if choice.is_quit == true:
 			button.pressed.connect(get_tree().quit)
 		else:
+			var target_line_idx: int = choice.target_line_idx
 			button.pressed.connect(show_text.bind(target_line_idx))

@@ -4,8 +4,10 @@ extends ColorRect
 @onready var texture_rect: TextureRect = %TextureRect
 @onready var label: Label = %Label
 @onready var powerups_v_box_container: VBoxContainer = %PowerupsVBoxContainer
+@onready var button: Button = $CenterContainer/VBoxContainer/HBoxContainer/Panel/Button
 
 var tween: Tween
+var money: float = 860.0
 
 # Don't forget to add a few items to the list in the Inspector!
 @export var items_list: Array[PoweredItem] = []
@@ -49,3 +51,7 @@ func display_item(text: String) -> void:
 	tween.tween_property(texture_rect, "modulate:a", 1.0, .9)
 	label.modulate.a = 0
 	tween.tween_property(label, "modulate:a", 1.0, 1)
+
+func change_money(new_money) -> void:
+	money = new_money
+	$CenterContainer/VBoxContainer/Panel/Label.text = money

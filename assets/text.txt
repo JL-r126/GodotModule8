@@ -1,0 +1,84 @@
+var dialogue_items: Array[Dictionary] = [
+	{
+		"expression": expressions["regular"],
+		"text": "I've been learning about [wave]Arrays and Dictionaries[/wave]",
+		"character": bodies["sophia"],
+		"choices": {
+			"Ok": 1,
+		},
+	},
+	{
+		"expression": expressions["regular"],
+		"text": "How has it been going?",
+		"character": bodies["pink"],
+		"choices": {
+			"good": 3,
+			"bad": 2,
+		},
+	},
+	{
+		"expression": expressions["sad"],
+		"text": "... Well... it is a little bit [shake]complicated[/shake]!",
+		"character": bodies["sophia"],
+		"choices": {
+			"ok": 4,
+		},
+	},
+	{
+		"expression": expressions["regular"],
+		"text": "... Well... it is going good!",
+		"character": bodies["sophia"],
+		"choices": {
+			"ok": 4,
+		},
+	},
+	{
+		"expression": expressions["regular"],
+		"text": "Oh!",
+		"character": bodies["pink"],
+		"choices": {
+			"I belive": 5,
+			"I don't belive": 8
+		},
+	},
+	{
+		"expression": expressions["regular"],
+		"text": "I believe in you!",
+		"character": bodies["pink"],
+		"choices": {
+			"next": 6,
+		},
+	},
+	{
+		"expression": expressions["happy"],
+		"text": "If you stick to it, you'll eventually make it!",
+		"character": bodies["pink"],
+		"choices": {
+			"ok": 7,
+		},
+	},
+	{
+		"expression": expressions["happy"],
+		"text": "That's it! Let's [tornado freq=30.0][rainbow val=1.0]GOOOOOO!!![/rainbow][/tornado]",
+		"character": bodies["sophia"],
+		"choices": {
+			"done": -1,
+		},
+	},
+	{
+		"expression": expressions["sad"],
+		"text": "I don't belive in you.",
+		"character": bodies["pink"],
+		"choices": {
+			"ok": 9,
+		},
+	},
+	{
+		"expression": expressions["sad"],
+		"text": "Your right, I will not keep trying",
+		"character": bodies["sophia"],
+		"choices": {
+			"done": -1,
+		},
+	}
+]
